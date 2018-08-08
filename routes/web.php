@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('doctors/', 'DoctorController@witajSwiecie');
+Route::get('doctors/', 'DoctorController@index');
 
 
 
