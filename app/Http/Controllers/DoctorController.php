@@ -12,6 +12,8 @@ class DoctorController extends Controller
             array("id"=>2, "lastName"=>"Austin", "firstName"=>"Adam", "email"=>"adam@austin.com", "phone"=>"456456456", "address"=>"Adress 2", "status"=>"Dostępny"),
             array("id"=>3, "lastName"=>"Carrson", "firstName"=>"bob", "email"=>"bob@carrson.com", "phone"=>"789789789", "address"=>"Adress 3", "status"=>"Niedostępny"),
         );
-        return view('doctors.list', ['doctorsList'=>$doctorsList]);
+        return view('doctors.list', ['doctorsList'=>$doctorsList,
+                                          'footerYear'=>date('Y'),
+                                          'title'=>'Moduł lekarzy'  ]);
     }
 }
