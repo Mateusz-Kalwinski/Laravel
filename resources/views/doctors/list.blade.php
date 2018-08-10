@@ -1,5 +1,9 @@
 @extends('template')
-@section('title'){{$title}} @endsection('title')
+@section('title')
+    @if(isset($title))
+        - {{$title}}
+    @endif
+@endsection('title')
 @section('content')
 <table class="table">
         <thead>
