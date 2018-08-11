@@ -9,8 +9,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
+            <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
@@ -20,13 +19,12 @@
         <tbody>
         @foreach($doctorsList as $doctors)
         <tr>
-            <th scope="row">{{$doctors['id']}}</th>
-            <td>{{$doctors['firstName']}}</td>
-            <td>{{$doctors['lastName']}}</td>
-            <td>{{$doctors['email']}}</td>
-            <td>{{$doctors['phone']}}</td>
-            <td>{{$doctors['address']}}</td>
-            <td>{{$doctors['status']}}</td>
+            <th scope="row">{{$doctors->id}}</th>
+            <td>{{$doctors->name}}</td>
+            <td>{{$doctors->email}}</td>
+            <td>{{$doctors->phone}}</td>
+            <td>{{$doctors->address}}</td>
+            <td>{{$doctors->status}}</td>
         </tr>
         @endforeach
         </tbody>
