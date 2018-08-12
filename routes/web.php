@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// doctors list
 Route::get('doctors/', 'DoctorController@index');
+
+//show single doctor profile
+Route::get('doctors/{id}', 'DoctorController@show');
 
 
 
