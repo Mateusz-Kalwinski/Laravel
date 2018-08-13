@@ -17,14 +17,14 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($doctorsList as $doctors)
+        @foreach($doctorsList as $doctor)
         <tr>
-            <th scope="row">{{$doctors->id}}</th>
-            <td>{{$doctors->name}}</td>
-            <td>{{$doctors->email}}</td>
-            <td>{{$doctors->phone}}</td>
-            <td>{{$doctors->address}}</td>
-            <td>{{$doctors->status}}</td>
+            <th scope="row">{{$doctor->id}}</th>
+            <td><a href="{{URL::to('doctors/' . $doctor->id)}}">{{$doctor->name}}</a></td>
+            <td>{{$doctor->email}}</td>
+            <td>{{$doctor->phone}}</td>
+            <td>{{$doctor->address}}</td>
+            <td>{{$doctor->status}}</td>
         </tr>
         @endforeach
         </tbody>
