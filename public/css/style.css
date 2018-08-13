@@ -1,4 +1,9 @@
 footer{
     background-color: #007bff;
+    margin-top: 50px;
     padding: 0px 100px;
+}
+
+nav{
+    margin-bottom: 50px;
 }
