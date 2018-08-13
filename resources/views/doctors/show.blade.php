@@ -6,9 +6,33 @@
 @endsection('title')
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <h1 class="text-primary">{{$doctor->name}}</h1>
+        <div class="card">
+            <div class="card-header">
+                {{$doctor->name}}
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>Name:</td>
+                        <td>{{$doctor->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>{{$doctor->email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td>{{$doctor->phone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td>{{$doctor->address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>{{$doctor->status}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
