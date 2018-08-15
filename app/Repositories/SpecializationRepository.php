@@ -13,5 +13,4 @@ class SpecializationRepository extends BaseRepository {
     {
         $this->model = $model;
     }
-git add app
 }
