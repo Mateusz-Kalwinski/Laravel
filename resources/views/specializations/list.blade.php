@@ -5,6 +5,8 @@
     @endif
 @endsection('title')
 @section('content')
+    <div class="container">
+        <h2>Specjalizacje</h2>
     <table class="table">
         <thead>
         <tr>
@@ -22,5 +24,5 @@
         @endforeach
         </tbody>
     </table>
-
+    </div>
 @endsection('content')
