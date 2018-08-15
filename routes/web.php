@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+//USERS
 // edit doctor
 Route::get('doctors/edit/{id}', 'DoctorController@edit');
 
@@ -27,9 +27,13 @@ Route::get('doctors/', 'DoctorController@index');
 //show single doctor profile
 Route::get('doctors/{id}', 'DoctorController@show');
 
+//SPECIALIZATIONS
+
 Route::get('specializations/', 'SpecializationController@index');
 
+//VISITS
 
+Route::get('visits/', 'VisitController@index');
 
 Auth::routes();
 
