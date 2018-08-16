@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+//    public function doctorsVisits(){
+//
+//        return $this->hasMany(Visit::class, 'doctor_id');
+//
+//    }
+//
+//    public function patientsVisit(){
+//        return $this->hasMany(Visit::class, 'patient_id');
+//    }
+
+    public function specializations(){
+        return $this->belongsToMany(Specialization::class, 'specialization_users');
+    }
 }
