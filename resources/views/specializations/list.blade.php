@@ -19,7 +19,7 @@
         @foreach($specializations as $specialization)
             <tr>
                 <th scope="row">{{$specialization->id}}</th>
-                <td>{{$specialization->name}}</td>
+                <td><a href="{{URL::to('doctors/specializations/' . $specialization->id) }}">{{$specialization->name}}</a></td>
             </tr>
         @endforeach
         </tbody>
