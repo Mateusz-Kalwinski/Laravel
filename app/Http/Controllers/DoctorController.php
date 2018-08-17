@@ -10,11 +10,14 @@ class DoctorController extends Controller
 {
     public function index(UserRepository $userRepo){
 
+        $statistics = $userRepo->getDoctorsStatistics();
+
         $users = $userRepo->getAllDoctors();
 
-        return view('doctors.list', ['doctorsList'=>$users,
-                                          'footerYear'=>date('Y'),
-                                          'title'=>'Moduł lekarzy'  ]);
+        return view('doctors.list', ['doctorsList' => $users,
+                                          'footerYear' => date('Y'),
+                                          'title' => 'Moduł lekarzy',
+                                          'statistics' => $statistics]);
     }
 
     public function show(UserRepository $userRepo, $id){
