@@ -27,9 +27,14 @@ Route::get('doctors/', 'DoctorController@index');
 //show single doctor profile
 Route::get('doctors/{id}', 'DoctorController@show');
 
+// doctors with specialization list
+Route::get('doctors/specializations/{id}', 'DoctorController@listBySpecializations');
+
 //SPECIALIZATIONS
 
 Route::get('specializations/', 'SpecializationController@index');
+
+
 
 //VISITS
 
