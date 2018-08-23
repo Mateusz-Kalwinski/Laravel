@@ -30,9 +30,17 @@ Route::get('doctors/{id}', 'DoctorController@show');
 // doctors with specialization list
 Route::get('doctors/specializations/{id}', 'DoctorController@listBySpecializations');
 
+
+
 //SPECIALIZATIONS
 
+Route::get('specializations/create', 'SpecializationController@create');
+
+Route::post('specializations/', 'SpecializationController@store');
+
 Route::get('specializations/', 'SpecializationController@index');
+
+
 
 
 
@@ -47,8 +55,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //PATIENTS
 
-// doctors list
+// patients list
 Route::get('patients/', 'PatientController@index');
 
-//show single doctor profile
+//show single patient profile
 Route::get('patients/{id}', 'PatientController@show');
