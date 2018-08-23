@@ -33,4 +33,10 @@ class UserRepository extends BaseRepository {
 
     }
 
+//    PATIENTS
+
+    public function getAllPatient(){
+        return $this->model->where('type', 'patient')->orderBy('name', 'asc')->get();
+    }
+
 }
