@@ -43,3 +43,12 @@ Route::get('visits/', 'VisitController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//PATIENTS
+
+// doctors list
+Route::get('patients/', 'PatientController@index');
+
+//show single doctor profile
+Route::get('patients/{id}', 'PatientController@show');
