@@ -22,6 +22,9 @@
                 <a class="nav-link" href="{{URL::to('doctors')}}">Lekarze</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{URL::to('patients')}}">Pacjenci</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{URL::to('specializations')}}">Specializacje</a>
             </li>
             <li class="nav-item">
