@@ -7,6 +7,7 @@
 @section('content')
     <div class="container">
         <h2>Specjalizacje</h2>
+        <a href="{{URL::to('specializations/create') }}">Dodaj specjalizacje</a>
     <table class="table">
         <thead>
         <tr>
