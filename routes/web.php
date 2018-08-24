@@ -30,6 +30,11 @@ Route::get('doctors/{id}', 'DoctorController@show');
 // doctors with specialization list
 Route::get('doctors/specializations/{id}', 'DoctorController@listBySpecializations');
 
+//form / add doctor
+Route::get('doctors/create', 'DoctorController@create');
+// new doctor save
+Route::post('doctors', 'DoctorController@store');
+
 
 
 //SPECIALIZATIONS
