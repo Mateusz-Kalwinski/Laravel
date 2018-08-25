@@ -18,6 +18,9 @@ Route::get('/', function () {
 // edit doctor
 Route::get('doctors/edit/{id}', 'DoctorController@edit');
 
+// post edit doctor
+Route::post('doctors/edit/', 'DoctorController@editStore');
+
 //create doctor
 Route::get('doctors/create', 'DoctorController@create');
 
@@ -29,6 +32,9 @@ Route::get('doctors/{id}', 'DoctorController@show');
 
 // doctors with specialization list
 Route::get('doctors/specializations/{id}', 'DoctorController@listBySpecializations');
+
+//delete doctor from list
+Route::get('doctors/delete/{id}', 'DoctorController@delete');
 
 //form / add doctor
 Route::get('doctors/create', 'DoctorController@create');
