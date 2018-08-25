@@ -57,7 +57,7 @@ class DoctorController extends Controller
 
         $doctor->name = $request->input('name');
         $doctor->email = $request->input('email');
-        $doctor->password= bcrypt($request->input('name'));
+        $doctor->password= bcrypt($request->input('password'));
         $doctor->phone = $request->input('phone');
         $doctor->address = $request->input('address');
         $doctor->pesel = $request->input('pesel');
@@ -72,7 +72,33 @@ class DoctorController extends Controller
 
     public function edit(UserRepository $userRepo, $id){
 
-        $doctor =  $userRepo->update(['name'=>'Allan Johnson'], $id);
+        $doctor = $userRepo->find($id);
+
+        $specializations = Specialization::all();
+        return view('doctors.edit', ['specializations' => $specializations,
+                                          'doctor' => $doctor,
+                                          'footerYear' => date('Y'),]);
+    }
+
+    public function editStore(Request $request){
+
+        $doctor = User::find($request->input('id'));
+
+        $doctor->name = $request->input('name');
+        $doctor->email = $request->input('email');
+        $doctor->phone = $request->input('phone');
+        $doctor->address = $request->input('address');
+        $doctor->pesel = $request->input('pesel');
+        $doctor->status = $request->input('status');
+        $doctor->save();
+
+        $doctor->specializations()->sync($request->input('specializations'));
+
+        return redirect()->action('DoctorController@index');
+    }
+
+    public function delete(UserRepository $userRepo, $id){
+        $doctor = $userRepo->delete($id);
 
         return redirect('doctors');
     }
