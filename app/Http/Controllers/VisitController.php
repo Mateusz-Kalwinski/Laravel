@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Visit;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\VisitRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use Mail;
 
 
 class VisitController extends Controller
@@ -19,7 +21,7 @@ class VisitController extends Controller
     public function index(VisitRepository $visitRepo){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $visits = $visitRepo->getAll();
@@ -32,7 +34,7 @@ class VisitController extends Controller
     public function create(UserRepository $userRepo){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $doctors = $userRepo->getAllDoctors();
@@ -46,12 +48,22 @@ class VisitController extends Controller
 
     public function store(Request $request){
 
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            return redirect()->route('login');
+        }
+
         $visit = new Visit;
 
         $visit->doctor_id = $request->input('doctor');
         $visit->patient_id= $request->input('patient');
         $visit->date = $request->input('date');
         $visit->save();
+
+        $patient = User::find($visit->patient_id);
+
+        Mail::send('emails.visit', ['visit'=>$visit], function ($m) use ($visit, $patient){
+            $m->to($patient->email, $patient->name)->subject('Nowa wizyta');
+        });
 
         return redirect()->action('VisitController@index');
     }

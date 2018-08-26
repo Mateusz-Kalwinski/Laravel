@@ -18,7 +18,7 @@ class DoctorController extends Controller
     public function index(UserRepository $userRepo){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $statistics = $userRepo->getDoctorsStatistics();
@@ -34,7 +34,7 @@ class DoctorController extends Controller
     public function listBySpecializations(UserRepository $userRepo, $id){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $statistics = $userRepo->getDoctorsStatistics();
@@ -50,7 +50,7 @@ class DoctorController extends Controller
     public function show(UserRepository $userRepo, $id){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $doctor =  $userRepo->find($id);
@@ -63,7 +63,7 @@ class DoctorController extends Controller
     public function create(){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $specializations = Specialization::all();
@@ -75,7 +75,7 @@ class DoctorController extends Controller
     public function store(Request $request){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $request->validate([
@@ -107,7 +107,7 @@ class DoctorController extends Controller
     public function edit(UserRepository $userRepo, $id){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $doctor = $userRepo->find($id);
@@ -121,7 +121,7 @@ class DoctorController extends Controller
     public function editStore(Request $request){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $doctor = User::find($request->input('id'));
@@ -142,7 +142,7 @@ class DoctorController extends Controller
     public function delete(UserRepository $userRepo, $id){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
         $doctor = $userRepo->delete($id);
 

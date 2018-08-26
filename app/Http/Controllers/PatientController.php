@@ -13,7 +13,7 @@ class PatientController extends Controller
 {
     public function index(UserRepository $userRepo){
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $users = $userRepo->getAllPatient();
@@ -26,7 +26,7 @@ class PatientController extends Controller
     public function show(UserRepository $userRepo, $id){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $patient =  $userRepo->find($id);

@@ -19,7 +19,7 @@ class SpecializationController extends Controller
     public function index(SpecializationRepository $specializationRepo){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $spacializatoins = $specializationRepo->getAll();
@@ -32,7 +32,7 @@ class SpecializationController extends Controller
     public function create(){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         return view('specializations.create', ['footerYear'=>date("Y")]);
@@ -41,7 +41,7 @@ class SpecializationController extends Controller
     public function store(Request $request){
 
         if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
-            redirect('login');
+            return redirect()->route('login');
         }
 
         $specialization = new Specialization;
