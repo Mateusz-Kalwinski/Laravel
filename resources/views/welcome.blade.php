@@ -13,7 +13,11 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background: #32b7ff;
+                background: -moz-linear-gradient(45deg, #32b7ff 0%, #0ad3b5 100%);
+                background: -webkit-linear-gradient(45deg, #32b7ff 0%,#0ad3b5 100%);
+                background: linear-gradient(45deg, #32b7ff 0%,#0ad3b5 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32b7ff', endColorstr='#0ad3b5',GradientType=1 );
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -62,6 +66,11 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .text-custome{
+                font-weight: 300;
+                color: #ffffff !important;
+            }
         </style>
     </head>
     <body>
@@ -69,25 +78,17 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Strona Główna</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Panel logowania</a>
+                        <a href="{{ route('register') }}">Rejestracja</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="title m-b-md text-custome">
+                    Przychodnia lekarska online.
                 </div>
             </div>
         </div>
