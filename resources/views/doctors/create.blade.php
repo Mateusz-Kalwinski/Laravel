@@ -6,6 +6,15 @@
 @endsection('title')
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h2>Dodawanie lekarza</h2>
         <form action="{{action('DoctorController@store')}}" method="post" role="form">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
