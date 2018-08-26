@@ -61,7 +61,7 @@ Route::get('visits/', 'VisitController@index');
 
 Route::get('visits/create', 'VisitController@create');
 
-Route::post('visits/', 'VisitController@store');
+Route::post('visits', 'VisitController@store');
 
 //OTHER
 
@@ -73,7 +73,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //PATIENTS
 
 // patients list
-Route::get('patients/', 'PatientController@index');
+Route::get('patients/', 'PatientController@index')->middleware('auth');
 
 //show single patient profile
-Route::get('patients/{id}', 'PatientController@show');
+Route::get('patients/{id}', 'PatientController@show')->middleware('auth');
+
+Route::post('patients/', 'PatientController@store');
