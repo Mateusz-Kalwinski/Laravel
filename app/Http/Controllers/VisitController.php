@@ -6,10 +6,21 @@ use App\Models\Visit;
 use Illuminate\Http\Request;
 use App\Repositories\VisitRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
+
 
 class VisitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(VisitRepository $visitRepo){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
 
         $visits = $visitRepo->getAll();
 
@@ -19,6 +30,10 @@ class VisitController extends Controller
     }
 
     public function create(UserRepository $userRepo){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
 
         $doctors = $userRepo->getAllDoctors();
         $patients = $userRepo->getAllPatient();

@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Specialization;
-
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(UserRepository $userRepo){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
 
         $statistics = $userRepo->getDoctorsStatistics();
 
@@ -24,6 +33,10 @@ class DoctorController extends Controller
 
     public function listBySpecializations(UserRepository $userRepo, $id){
 
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
         $statistics = $userRepo->getDoctorsStatistics();
 
         $users = $userRepo->getDoctorsBySpecialization($id);
@@ -36,6 +49,10 @@ class DoctorController extends Controller
 
     public function show(UserRepository $userRepo, $id){
 
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
         $doctor =  $userRepo->find($id);
 
         return view('doctors.show', ['doctor'=>$doctor,
@@ -45,6 +62,10 @@ class DoctorController extends Controller
 
     public function create(){
 
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
         $specializations = Specialization::all();
 
         return view('doctors.create', ['specializations'=>$specializations,
@@ -52,6 +73,19 @@ class DoctorController extends Controller
     }
 
     public function store(Request $request){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
+        $request->validate([
+            'name'=>'required|max:255',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required|min:5',
+            'phone'=>'required',
+            'address'=>'required',
+            'pesel'=>'required'
+        ]);
 
         $doctor = new User;
 
@@ -72,6 +106,10 @@ class DoctorController extends Controller
 
     public function edit(UserRepository $userRepo, $id){
 
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
         $doctor = $userRepo->find($id);
 
         $specializations = Specialization::all();
@@ -81,6 +119,10 @@ class DoctorController extends Controller
     }
 
     public function editStore(Request $request){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
 
         $doctor = User::find($request->input('id'));
 
@@ -98,6 +140,10 @@ class DoctorController extends Controller
     }
 
     public function delete(UserRepository $userRepo, $id){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
         $doctor = $userRepo->delete($id);
 
         return redirect('doctors');

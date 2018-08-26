@@ -5,10 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
 use App\Repositories\SpecializationRepository;
+use Illuminate\Support\Facades\Auth;
+
 
 class SpecializationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(SpecializationRepository $specializationRepo){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
 
         $spacializatoins = $specializationRepo->getAll();
 
@@ -18,10 +30,20 @@ class SpecializationController extends Controller
     }
 
     public function create(){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
         return view('specializations.create', ['footerYear'=>date("Y")]);
     }
 
     public function store(Request $request){
+
+        if (Auth::user()->type != 'doctor' && Auth::user()->type != 'admin'){
+            redirect('login');
+        }
+
         $specialization = new Specialization;
         $specialization->name = $request->input('name');
         $specialization->save();
